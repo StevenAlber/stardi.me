@@ -25,14 +25,14 @@
 .hero::after{content:'';position:absolute;bottom:-20%;left:-10%;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.04) 0%,transparent 60%);pointer-events:none}
 .hero-content{max-width:780px;margin:0 auto;position:relative;z-index:1}
 .hero-badge{display:inline-block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(34,211,238,.25);padding:.4rem 1rem;border-radius:100px;margin-top:3.5rem;margin-bottom:1.8rem;opacity:0;animation:fadeUp .8s ease .2s forwards;font-weight:500}
-.hero h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.6rem,6vw,4.2rem);color:#fff;line-height:1.1;margin-bottom:.8rem;opacity:0;animation:fadeUp .8s ease .4s forwards;letter-spacing:-.03em}
-.hero-philosophy{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(1.3rem,3vw,1.8rem);background:linear-gradient(135deg,var(--cyan),var(--emerald));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:540px;line-height:1.35;margin-bottom:2rem;opacity:0;animation:fadeUp .8s ease .55s forwards}
-.hero-sub{font-size:clamp(1rem,2vw,1.12rem);color:var(--text-muted);max-width:560px;margin-bottom:2rem;line-height:1.8;opacity:0;animation:fadeUp .8s ease .6s forwards}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(2.4rem,5.5vw,3.8rem);color:#fff;line-height:1.12;margin-bottom:.8rem;opacity:0;animation:fadeUp .8s ease .4s forwards;letter-spacing:-.02em}
+.hero-philosophy{font-family:'DM Serif Display',serif;font-weight:400;font-size:clamp(1.2rem,2.5vw,1.6rem);background:linear-gradient(135deg,var(--cyan),var(--emerald));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;max-width:540px;line-height:1.4;margin-bottom:2rem;opacity:0;animation:fadeUp .8s ease .55s forwards}
+.hero-sub{font-size:clamp(1rem,2vw,1.12rem);color:#B0BEC5;max-width:560px;margin-bottom:2rem;line-height:1.8;opacity:0;animation:fadeUp .8s ease .6s forwards}
 .hero-cta{display:inline-flex;align-items:center;gap:.6rem;background:var(--cyan);color:var(--midnight);text-decoration:none;font-weight:600;font-size:1rem;padding:.95rem 2.2rem;border-radius:8px;transition:all .3s ease;opacity:0;animation:fadeUp .8s ease .8s forwards}
 .hero-cta:hover{background:#06B6D4;transform:translateY(-2px);box-shadow:0 8px 30px rgba(34,211,238,.25)}
 .hero-cta svg{transition:transform .3s ease}.hero-cta:hover svg{transform:translateX(4px)}
 .hero-proof{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:2.2rem;opacity:0;animation:fadeUp .8s ease 1s forwards}
-.hero-proof-item{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--text-muted)}
+.hero-proof-item{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:#B0BEC5}
 .hero-proof-item svg{width:16px;height:16px;color:var(--emerald);flex-shrink:0}
 .get-strip{background:var(--slate);padding:3rem 2rem;border-top:1px solid rgba(34,211,238,.08);border-bottom:1px solid rgba(34,211,238,.08)}
 .get-strip .container{max-width:880px;margin:0 auto}
@@ -95,8 +95,7 @@ section{padding:5.5rem 2rem}
 .market-col{color:var(--text-muted)!important;text-decoration:line-through}
 .in-tag{display:inline-block;background:var(--emerald-dim);color:var(--emerald);font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:4px}
 .value-bridge{background:var(--pure);text-align:center;padding:4rem 2rem}
-.value-bridge p{font-family:'DM Serif Display',serif;font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--text-dark);max-width:640px;margin:0 auto;line-height:1.8}
-.value-bridge strong{color:var(--midnight)}
+.value-bridge p{font-family:'IBM Plex Sans',sans-serif;font-weight:400;font-size:clamp(1rem,2vw,1.15rem);color:var(--text-dark);max-width:620px;margin:0 auto;line-height:1.85}
 .pricing{background:var(--midnight);text-align:center;padding:5.5rem 2rem;position:relative;overflow:hidden}
 .pricing::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.05) 0%,transparent 60%);pointer-events:none}
 .pricing .container{position:relative;z-index:1}
@@ -179,7 +178,7 @@ footer a{color:var(--cyan);text-decoration:none}
   <div class="hero-content">
     <div class="hero-badge">24 h &middot; stardipakett</div>
     <h1>Sinu uus sissetulek ei alga CV-st</h1>
-    <p class="hero-philosophy">See kujuneb selgusest, mida sa tahad maailmale pakkuda</p>
+    <p class="hero-philosophy">See algab sellest, et sul on selge pakkumine</p>
     <p class="hero-sub">Kirjelda l&uuml;hidalt, mis sind huvitab v&otilde;i milles sul on kogemus. 24 tunniga saad uue ajastu &auml;risuuna, valmis veebilehe, stardidokumendi ja veebimakse lahenduse &ndash; k&otilde;ik, mis on vaja alustamiseks.</p>
     <a href="#kontakt" class="hero-cta">Alusta juba t&auml;na <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     <div class="hero-proof">
@@ -340,7 +339,7 @@ footer a{color:var(--cyan);text-decoration:none}
 </section>
 
 <div class="value-bridge">
-  <p>Sa ei osta lihtsalt veebilehte. Sa saad <strong>selge pakkumise, toimiva veebilehe ja v&otilde;imaluse klientidelt kohe internetis raha vastu v&otilde;tta.</strong> Enamik j&auml;&auml;b kuudeks m&otilde;tlema. Sina saad &uuml;he p&auml;evaga valmis aluse, millega p&auml;riselt alustada.</p>
+  <p>&Uuml;he p&auml;evaga loome sulle valmis stardiplatvormi &mdash; veebilehe, &auml;riplaani ja makselahenduse, millele saad oma j&auml;rgmise eluetapi &uuml;les ehitada. Mitte lootuses, et keegi annab v&otilde;imaluse, vaid positsioonilt, kus sul on olemas oma alus, oma suund ja oma pakkumine.</p>
 </div>
 
 <section class="guarantee">
