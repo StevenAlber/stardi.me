@@ -496,7 +496,7 @@ function handleSubmit(){
   btn.textContent='Suunan maksele...';
   btn.style.background='#10B981';
   btn.disabled=true;
-  const paymentUrl='https://buy.stripe.com/YOUR_STRIPE_LINK'
+  const paymentUrl='https://buy.stripe.com/8x23cvdS5a5Df1K4xWasg07'
     +'?prefilled_email='+encodeURIComponent(email)
     +'&client_reference_id='+encodeURIComponent(name);
   try{sessionStorage.setItem('stardi_form',JSON.stringify({name,email,situation:document.getElementById('situation').value,language:document.getElementById('language').value,idea:document.getElementById('idea').value}));}catch(e){}
