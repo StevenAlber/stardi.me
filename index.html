@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>stardi.me — 24h stardipakett. Veebileht. Stardidokument. Suund.</title>
+<meta name="description" content="Kirjelda, mis sind huvitab. 24 tunniga saad stardidokumendi, veebilehe ja tegevusplaani. 349 €. Täielikult digitaalne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--midnight:#0F172A;--slate:#1E293B;--slate-mid:#334155;--ice:#E2E8F0;--pure:#F8FAFC;--cyan:#22D3EE;--cyan-dim:rgba(34,211,238,.15);--emerald:#10B981;--emerald-dim:rgba(16,185,129,.12);--text-muted:#94A3B8;--text-dark:#1E293B;--text-body:#475569}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'IBM Plex Sans',sans-serif;color:var(--text-dark);background:var(--pure);line-height:1.7;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s ease}
+.nav.scrolled{background:rgba(15,23,42,.95);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(34,211,238,.06)}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-logo svg{width:32px;height:32px}
+.nav-logo span{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem;color:#fff;letter-spacing:-.02em}
+.nav-logo .dot{color:var(--cyan)}
+.nav-cta{font-size:.82rem;font-weight:600;color:var(--cyan);text-decoration:none;border:1px solid rgba(34,211,238,.3);padding:.45rem 1rem;border-radius:6px;transition:all .3s ease}
+.nav-cta:hover{background:rgba(34,211,238,.1);border-color:var(--cyan)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:2rem;position:relative;overflow:hidden;background:var(--midnight)}
+.hero::before{content:'';position:absolute;top:-30%;right:-15%;width:70vw;height:70vw;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.06) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-20%;left:-10%;width:50vw;height:50vw;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.04) 0%,transparent 60%);pointer-events:none}
+.hero-content{max-width:780px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-block;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(34,211,238,.25);padding:.45rem 1.1rem;border-radius:100px;margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s ease .2s forwards;font-weight:500}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(2.2rem,5.5vw,3.6rem);color:#fff;line-height:1.15;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s ease .4s forwards;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--cyan),var(--emerald));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(1rem,2vw,1.15rem);color:var(--text-muted);max-width:560px;margin-bottom:2.5rem;line-height:1.85;opacity:0;animation:fadeUp .8s ease .6s forwards}
+.hero-cta{display:inline-flex;align-items:center;gap:.6rem;background:var(--cyan);color:var(--midnight);text-decoration:none;font-weight:600;font-size:1rem;padding:.95rem 2.2rem;border-radius:8px;transition:all .3s ease;opacity:0;animation:fadeUp .8s ease .8s forwards}
+.hero-cta:hover{background:#06B6D4;transform:translateY(-2px);box-shadow:0 8px 30px rgba(34,211,238,.25)}
+.hero-cta svg{transition:transform .3s ease}.hero-cta:hover svg{transform:translateX(4px)}
+
+/* HERO PROOF */
+.hero-proof{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:2.5rem;opacity:0;animation:fadeUp .8s ease 1s forwards}
+.hero-proof-item{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--text-muted)}
+.hero-proof-item svg{width:16px;height:16px;color:var(--emerald);flex-shrink:0}
+
+/* WHAT YOU GET - compact strip */
+.get-strip{background:var(--slate);padding:3rem 2rem;border-top:1px solid rgba(34,211,238,.08);border-bottom:1px solid rgba(34,211,238,.08)}
+.get-strip .container{max-width:880px;margin:0 auto}
+.get-strip h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:var(--ice);margin-bottom:1.5rem;text-align:center;letter-spacing:.05em;text-transform:uppercase}
+.get-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+.get-item{display:flex;align-items:flex-start;gap:.7rem;padding:1rem;background:rgba(15,23,42,.5);border:1px solid var(--slate-mid);border-radius:10px}
+.get-item svg{width:20px;height:20px;color:var(--cyan);flex-shrink:0;margin-top:.15rem}
+.get-item div h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.88rem;color:#fff;margin-bottom:.15rem}
+.get-item div p{font-size:.78rem;color:var(--text-muted);line-height:1.5}
+.get-note{text-align:center;margin-top:1.2rem;font-size:.82rem;color:var(--text-muted);font-style:italic}
+
+/* COMMON */
+section{padding:5.5rem 2rem}
+.container{max-width:880px;margin:0 auto}
+.section-label{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--emerald);margin-bottom:.8rem;font-weight:600}
+.section-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.7rem,3.5vw,2.4rem);color:var(--midnight);margin-bottom:1rem;line-height:1.2;letter-spacing:-.02em}
+.section-sub{font-size:1.02rem;color:var(--text-body);max-width:600px;margin-bottom:2rem;line-height:1.7}
+.dark-section{background:var(--midnight)}.dark-section .section-label{color:var(--cyan)}.dark-section .section-title{color:#fff}.dark-section .section-sub{color:var(--text-muted)}
+
+/* REALITY */
+.reality{background:var(--midnight);border-bottom:1px solid rgba(34,211,238,.06)}
+.reality-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:2.5rem}
+.reality-card{padding:1.8rem;border-radius:12px;background:var(--slate);border:1px solid var(--slate-mid)}
+.reality-card .rc-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:.6rem;font-weight:600}
+.reality-card h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.05rem;color:#fff;margin-bottom:.5rem}
+.reality-card p{font-size:.88rem;color:var(--text-muted);line-height:1.65}
+
+/* EXAMPLES */
+.examples{background:var(--pure)}
+.example-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:2rem}
+.example-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:1.6rem;transition:all .3s ease}
+.example-card:hover{border-color:#CBD5E1;box-shadow:0 4px 16px rgba(15,23,42,.05)}
+.example-from{font-size:.78rem;color:var(--text-muted);margin-bottom:.3rem}
+.example-card .eq{font-size:.85rem;color:var(--cyan);margin:.4rem 0;font-weight:600}
+.example-to{font-size:.92rem;color:var(--text-dark);font-weight:600}
+
+/* FOR WHO */
+.for-who{background:#F1F5F9}
+.profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;margin-top:2rem}
+.profile-card{background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:1.6rem;transition:all .3s ease}
+.profile-card::after{content:'';position:absolute;bottom:0;left:1.5rem;right:1.5rem;height:2px;background:linear-gradient(90deg,var(--cyan),var(--emerald));border-radius:2px;transform:scaleX(0);transition:transform .4s ease;position:relative;display:block;margin-top:1rem}
+.profile-card:hover::after{transform:scaleX(1)}
+.profile-card h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;color:var(--midnight);margin-bottom:.4rem}
+.profile-card p{font-size:.88rem;color:var(--text-body);line-height:1.6}
+
+/* PROCESS */
+.process{background:var(--midnight)}
+.process-steps{display:flex;flex-direction:column;gap:0;margin-top:2rem}
+.ps{display:grid;grid-template-columns:72px 1fr;position:relative}
+.ps-marker{display:flex;flex-direction:column;align-items:center}
+.ps-num{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--emerald));color:var(--midnight);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;flex-shrink:0}
+.ps-line{width:2px;flex:1;background:var(--slate)}
+.ps:last-child .ps-line{display:none}
+.ps-content{padding:.3rem 0 2.5rem 0}
+.ps-content h3{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.05rem;color:#fff;margin-bottom:.3rem}
+.ps-content p{font-size:.9rem;color:var(--text-muted);line-height:1.7;max-width:480px}
+.ps:last-child .ps-content{padding-bottom:0}
+
+/* NOT FOR */
+.not-for{background:var(--pure)}
+.not-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2rem}
+.not-item{display:flex;align-items:flex-start;gap:.8rem;padding:1rem 1.2rem;background:#fff;border-radius:10px;border:1px solid #E2E8F0}
+.not-item .ni{width:24px;height:24px;border-radius:50%;background:rgba(239,68,68,.08);color:#EF4444;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
+.not-item p{font-size:.88rem;color:var(--text-body);line-height:1.5}
+
+/* PRICE TABLE */
+.comparison{background:#F1F5F9}
+.price-table{width:100%;border-collapse:collapse;margin-top:2rem;border-radius:12px;overflow:hidden;border:1px solid #E2E8F0}
+.price-table thead{background:var(--midnight)}
+.price-table th{padding:.9rem 1.4rem;text-align:left;color:var(--ice);font-weight:500;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase}
+.price-table td{padding:.8rem 1.4rem;border-bottom:1px solid #E8ECF0;font-size:.92rem;color:var(--text-body)}
+.price-table tr:last-child td{border-bottom:none}
+.price-table .total-row{background:#E2E8F0}
+.price-table .total-row td{font-weight:600;color:var(--midnight);border-bottom:none}
+.price-table .total-row td:last-child{color:var(--emerald);font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700}
+.market-col{color:var(--text-muted)!important;text-decoration:line-through}
+.in-tag{display:inline-block;background:var(--emerald-dim);color:var(--emerald);font-size:.78rem;font-weight:600;padding:.15rem .5rem;border-radius:4px}
+
+/* VALUE BRIDGE */
+.value-bridge{background:var(--pure);text-align:center;padding:4rem 2rem}
+.value-bridge p{font-family:'DM Serif Display',serif;font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--text-dark);max-width:640px;margin:0 auto;line-height:1.8}
+.value-bridge strong{color:var(--midnight)}
+
+/* PRICING */
+.pricing{background:var(--midnight);text-align:center;padding:5.5rem 2rem;position:relative;overflow:hidden}
+.pricing::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.05) 0%,transparent 60%);pointer-events:none}
+.pricing .container{position:relative;z-index:1}
+.pricing .section-label{color:var(--cyan)}.pricing .section-title{color:#fff}
+.price-big{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(3.5rem,8vw,5rem);background:linear-gradient(135deg,var(--cyan),var(--emerald));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:1rem 0 .3rem;line-height:1}
+.price-note{font-size:1rem;color:var(--text-muted);margin-bottom:.5rem}
+.price-limit{font-size:.85rem;color:var(--cyan);margin-bottom:2rem;font-weight:500}
+.pricing-cta{display:inline-flex;align-items:center;gap:.6rem;background:var(--cyan);color:var(--midnight);text-decoration:none;font-weight:600;font-size:1.05rem;padding:1rem 2.5rem;border-radius:8px;transition:all .3s ease}
+.pricing-cta:hover{background:#06B6D4;transform:translateY(-2px);box-shadow:0 8px 30px rgba(34,211,238,.25)}
+.pricing-guarantee{margin-top:1.5rem;font-size:.82rem;color:var(--slate-mid);max-width:400px;margin-left:auto;margin-right:auto}
+
+/* FAQ */
+.faq{background:var(--pure)}
+.faq-list{margin-top:2rem;max-width:680px}
+.faq-item{border-bottom:1px solid #E2E8F0;padding:1.2rem 0}
+.faq-q{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;color:var(--midnight);cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:'+';font-size:1.2rem;color:var(--cyan);transition:transform .3s ease}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:.9rem;color:var(--text-body);line-height:1.7}
+.faq-item.open .faq-a{max-height:200px;padding-top:.8rem}
+
+/* CONTACT */
+.contact{background:#F1F5F9;padding:5.5rem 2rem}
+.contact-box{max-width:560px;margin:0 auto;background:#fff;border:1px solid #E2E8F0;border-radius:14px;padding:2.5rem;box-shadow:0 4px 24px rgba(15,23,42,.04)}
+.contact-box h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.5rem;color:var(--midnight);margin-bottom:.4rem}
+.contact-box>p{color:var(--text-body);font-size:.9rem;margin-bottom:1.8rem;line-height:1.6}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.82rem;font-weight:500;margin-bottom:.3rem;color:var(--text-dark)}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.7rem 1rem;border:1px solid #E2E8F0;border-radius:8px;font-family:'IBM Plex Sans',sans-serif;font-size:.9rem;color:var(--text-dark);background:var(--pure);transition:all .3s ease;outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--cyan);background:#fff;box-shadow:0 0 0 3px var(--cyan-dim)}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-group select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.form-submit{width:100%;padding:.9rem;background:var(--midnight);color:#fff;border:none;border-radius:8px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;transition:all .3s ease;margin-top:.5rem}
+.form-submit:hover{background:var(--slate);transform:translateY(-1px)}
+.form-note{text-align:center;font-size:.78rem;color:var(--text-muted);margin-top:.8rem;line-height:1.5}
+
+/* IDEA TAGS */
+.idea-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.3rem}
+.idea-tag{display:inline-flex;align-items:center;gap:.3rem;padding:.4rem .75rem;border-radius:100px;font-size:.82rem;color:var(--text-body);background:var(--pure);border:1px solid #E2E8F0;cursor:pointer;transition:all .2s;user-select:none}
+.idea-tag:hover{border-color:var(--cyan);color:var(--midnight);background:#fff}
+.idea-tag.selected{border-color:var(--cyan);background:var(--cyan-dim);color:var(--midnight);font-weight:500}
+
+/* FOOTER */
+footer{background:var(--midnight);color:var(--slate-mid);text-align:center;padding:2.5rem 2rem;font-size:.8rem;border-top:1px solid rgba(34,211,238,.06)}
+@media(max-width:768px){footer{padding-bottom:5rem}}
+footer a{color:var(--cyan);text-decoration:none}
+.footer-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem;color:var(--ice);margin-bottom:.4rem}
+
+/* GUARANTEE */
+.guarantee{background:linear-gradient(135deg,var(--midnight),var(--slate));padding:4rem 2rem;position:relative;overflow:hidden}
+.guarantee-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:.3}
+.guarantee-icon{width:64px;height:64px;background:rgba(34,211,238,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.8rem;line-height:1}
+.guarantee-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,3vw,1.8rem);color:#fff;margin-bottom:1rem;font-weight:700}
+.guarantee-text{color:var(--text-muted);font-size:1rem;max-width:540px;margin:0 auto;line-height:1.7}
+.guarantee-text strong{color:var(--ice)}
+.guarantee-badge{margin-top:1.5rem;display:inline-flex;align-items:center;gap:.5rem;background:rgba(16,185,129,.12);color:var(--emerald);padding:.55rem 1.1rem;border-radius:100px;font-size:.85rem;font-weight:500}
+
+/* STICKY MOBILE CTA */
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;background:rgba(15,23,42,.97);border-top:1px solid rgba(34,211,238,.2);padding:.7rem 1.5rem;transform:translateY(100%);transition:transform .3s ease;z-index:999;backdrop-filter:blur(12px)}
+.sticky-cta.visible{transform:translateY(0)}
+.sticky-inner{max-width:880px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.sticky-cta span{color:var(--ice);font-size:.88rem}
+.sticky-cta span strong{color:var(--cyan)}
+.sticky-btn{background:var(--cyan);color:var(--midnight);padding:.55rem 1.2rem;border-radius:6px;font-weight:600;font-size:.88rem;text-decoration:none;white-space:nowrap;transition:all .2s}
+.sticky-btn:hover{background:#06B6D4}
+@media(min-width:769px){.sticky-cta{display:none}}
+
+/* ANIM */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:.3}50%{opacity:.7}}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .hero{padding:2rem 1.5rem;min-height:92vh}
+  section{padding:4rem 1.5rem}.profiles{grid-template-columns:1fr}
+  .reality-grid{grid-template-columns:1fr}.example-grid{grid-template-columns:1fr}
+  .not-grid{grid-template-columns:1fr}.get-items{grid-template-columns:1fr}
+  .contact-box{padding:2rem 1.5rem}.ps{grid-template-columns:56px 1fr}
+  .price-table th,.price-table td{padding:.6rem .8rem;font-size:.82rem}
+  .hero-proof{gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="8" fill="url(#lg)" opacity=".15"/><path d="M10 22L22 10M22 10H14M22 10V18" stroke="url(#lg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="lg" x1="6" y1="6" x2="26" y2="26"><stop stop-color="#22D3EE"/><stop offset="1" stop-color="#10B981"/></linearGradient></defs></svg>
+    <span>stardi<span class="dot">.</span>me</span>
+  </a>
+  <a href="#kontakt" class="nav-cta">Paneme käima</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Nädalas kuni 5 projekti</div>
+    <h1>Uus algus ei alga CV-st.<br><em>See algab sinu enda platvormist.</em></h1>
+    <p class="hero-sub">Kirjelda, mis sind huvitab v&otilde;i milles sul on kogemust. 24 tunniga saad selge &auml;risuuna, unikaalse veebilehe ja stardidokumendi, millega kohe n&auml;htavaks minna.</p>
+    <a href="#kontakt" class="hero-cta">Paneme mu asja käima <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="hero-proof">
+      <div class="hero-proof-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Stardidokument (10–15 lk)</div>
+      <div class="hero-proof-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Unikaalne veebileht &mdash; mitte template</div>
+      <div class="hero-proof-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> Konkreetne tegevusplaan</div>
+      <div class="hero-proof-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg> 349 &euro; &middot; 24h &middot; digitaalne</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET STRIP -->
+<div class="get-strip">
+  <div class="container">
+    <h2>Mida sa 24 tunniga k&auml;tte saad</h2>
+    <div class="get-items">
+      <div class="get-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+        <div><h3>Stardidokument</h3><p>10&ndash;15 lk &auml;rikontseptsioon, turg, plaan</p></div>
+      </div>
+      <div class="get-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <div><h3>Unikaalne veebileht</h3><p>Ainult sinu. Oma disain, oma toon, oma lugu. Mitte template.</p></div>
+      </div>
+      <div class="get-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div><h3>Tegevusplaan</h3><p>Kuidas kliente leida, kus olla n&auml;htav</p></div>
+      </div>
+      <div class="get-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <div><h3>Konsultatsioon</h3><p>Kirjalik, sinu olukorra jaoks</p></div>
+      </div>
+    </div>
+    <p class="get-note">Iga projekt on ainulaadne. Sinu &auml;ri, sinu lugu, sinu disain. Mitte template. Mitte massitoode.</p>
+  </div>
+</div>
+
+<!-- REALITY -->
+<section class="reality dark-section">
+  <div class="container">
+    <div class="section-label reveal">Uus reaalsus</div>
+    <h2 class="section-title reveal">Maailm on muutunud.<br>Enamik pole veel kohanenud.</h2>
+    <p class="section-sub reveal">AI ja digitaalsed t&ouml;&ouml;riistad on loonud v&otilde;imaluse, mida 5 aastat tagasi polnud. &Uuml;he p&auml;evaga saab teha seda, mis varem v&otilde;ttis kuid.</p>
+    <div class="reality-grid">
+      <div class="reality-card reveal">
+        <div class="rc-label">Vana maailm</div>
+        <h3>Otsi t&ouml;&ouml;koht &rarr; oota palka &rarr; looda, et ei koonda</h3>
+        <p>CV, intervjuud, palk mis ei kasva. Vaheta firmat iga 3 aasta tagant. Korda.</p>
+      </div>
+      <div class="reality-card reveal">
+        <div class="rc-label">Uus maailm</div>
+        <h3>Leia oma teema &rarr; ehita platvorm &rarr; teeni otse</h3>
+        <p>AI teeb rasked asjad. Sina keskendud sellele, mis k&otilde;idab. Sissetulek on sinu kontrolli all.</p>
+      </div>
+      <div class="reality-card reveal">
+        <div class="rc-label">Probleem</div>
+        <h3>Keegi pole n&auml;idanud, kuidas alustada</h3>
+        <p>Mitte sellepärast, et sul poleks potentsiaali. Vaid sellepärast, et traditsiooniline s&uuml;steem ei &otilde;peta ise m&otilde;tlema.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXAMPLES -->
+<section class="examples">
+  <div class="container">
+    <div class="section-label reveal">N&auml;ited</div>
+    <h2 class="section-title reveal">Millest v&otilde;ib s&uuml;ndida &auml;ri</h2>
+    <p class="section-sub reveal">Sa ei pea olema ekspert. Piisab huvist.</p>
+    <div class="example-grid">
+      <div class="example-card reveal">
+        <div class="example-from">&ldquo;Mulle meeldib tervislik toit&rdquo;</div>
+        <div class="eq">&darr;</div>
+        <div class="example-to">Personaalse toitumisjuhendaja teenuseleht</div>
+      </div>
+      <div class="example-card reveal">
+        <div class="example-from">&ldquo;Olen hea lastega&rdquo;</div>
+        <div class="eq">&darr;</div>
+        <div class="example-to">V&auml;ikese perehoiu v&otilde;i lasteprogrammi platvorm</div>
+      </div>
+      <div class="example-card reveal">
+        <div class="example-from">&ldquo;Olen aastaid remonti teinud&rdquo;</div>
+        <div class="eq">&darr;</div>
+        <div class="example-to">Kohaliku remonditeenuse professionaalne m&uuml;&uuml;gileht</div>
+      </div>
+      <div class="example-card reveal">
+        <div class="example-from">&ldquo;Ei tea, mida teha&rdquo;</div>
+        <div class="eq">&darr;</div>
+        <div class="example-to">Leiame koos suuna sinu huvide ja turuvajaduse p&otilde;hjal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KELLELE -->
+<section class="for-who">
+  <div class="container">
+    <div class="section-label reveal">Kellele</div>
+    <h2 class="section-title reveal">Ideed pole vaja. Tahet on vaja.</h2>
+    <div class="profiles">
+      <div class="profile-card reveal"><h3>&#127793; Nullist alustaja</h3><p>Pole ideed, pole erioskust &mdash; aga on tunne, et tahaks midagi ise teha.</p></div>
+      <div class="profile-card reveal"><h3>&#128260; Uue alguse otsija</h3><p>Koondatud, t&uuml;dinenud, v&otilde;i lihtsalt tead, et vana rada on l&auml;bi.</p></div>
+      <div class="profile-card reveal"><h3>&#127919; Ekspert ilma pakendita</h3><p>Koolitaja, terapeut, raamatupidaja. Oskus on &mdash; veebis sind ei leia keegi.</p></div>
+      <div class="profile-card reveal"><h3>&#129513; Freelancer</h3><p>Natuke seda, natuke toda. Aeg panna &uuml;ks selge pakkumine kokku.</p></div>
+      <div class="profile-card reveal"><h3>&#128161; Idee-inimene</h3><p>Kuude kaupa m&otilde;elnud. Homme teed. Tegelikult mitte kunagi. Kuni n&uuml;&uuml;d.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NOT FOR YOU -->
+<section class="not-for">
+  <div class="container">
+    <div class="section-label reveal">Ausalt</div>
+    <h2 class="section-title reveal">See ei sobi sulle, kui...</h2>
+    <div class="not-grid">
+      <div class="not-item reveal"><span class="ni">&times;</span><p>Tahad suurt e-poodi v&otilde;i keerulist platvormi</p></div>
+      <div class="not-item reveal"><span class="ni">&times;</span><p>Ootad, et keegi garanteeriks sulle kliendid</p></div>
+      <div class="not-item reveal"><span class="ni">&times;</span><p>Pole huvi ise edasi tegutseda</p></div>
+      <div class="not-item reveal"><span class="ni">&times;</span><p>Tahad lihtsalt &ldquo;mingit veebilehte&rdquo;, mitte toimivat pakkumist</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process dark-section">
+  <div class="container">
+    <div class="section-label reveal">Kuidas see k&auml;ib</div>
+    <h2 class="section-title reveal">Kolm sammu. Kohtumisi null.</h2>
+    <p class="section-sub reveal">Kogu protsess on digitaalne. Sa ei pea kellegagi helistama ega kohtuma.</p>
+    <div class="process-steps">
+      <div class="ps reveal">
+        <div class="ps-marker"><div class="ps-num">1</div><div class="ps-line"></div></div>
+        <div class="ps-content"><h3>Sina kirjeldad</h3><p>T&auml;idad vormi: mis sind k&otilde;idab, mis meeldib, mis kogemus on. 5&ndash;10 lauset piisab. Pole vaja &auml;rikeelt.</p></div>
+      </div>
+      <div class="ps reveal">
+        <div class="ps-marker"><div class="ps-num">2</div><div class="ps-line"></div></div>
+        <div class="ps-content"><h3>Meie ehitame</h3><p>S&otilde;nastame pakkumise, kirjutame stardidokumendi, disainime unikaalse veebilehe, koostame tegevusplaani. AI + aastate kogemus.</p></div>
+      </div>
+      <div class="ps reveal">
+        <div class="ps-marker"><div class="ps-num">3</div><div class="ps-line"></div></div>
+        <div class="ps-content"><h3>Saad k&otilde;ik k&auml;tte</h3><p>24h jooksul saad e-postiga: stardidokumendi PDF, lingi oma unikaalsele veebilehele, ja kirjaliku konsultatsiooni kuidas edasi.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE TABLE -->
+<section class="comparison">
+  <div class="container">
+    <div class="section-label reveal">Kui telliksid selle t&ouml;&ouml; eraldi</div>
+    <h2 class="section-title reveal">Sama tulemus. K&uuml;mnendik hinda.</h2>
+    <table class="price-table reveal">
+      <thead><tr><th>Teenus</th><th>Turuhind</th><th>stardi.me</th></tr></thead>
+      <tbody>
+        <tr><td>Stardidokument (10&ndash;15 lk)</td><td class="market-col">1 500&ndash;3 000 &euro;</td><td><span class="in-tag">Sees</span></td></tr>
+        <tr><td>Unikaalne veebileht + disain</td><td class="market-col">500&ndash;1 000 &euro;</td><td><span class="in-tag">Sees</span></td></tr>
+        <tr><td>Strateegiline s&otilde;nastus</td><td class="market-col">300&ndash;800 &euro;</td><td><span class="in-tag">Sees</span></td></tr>
+        <tr><td>M&uuml;&uuml;gitekstid</td><td class="market-col">200&ndash;500 &euro;</td><td><span class="in-tag">Sees</span></td></tr>
+        <tr><td>Konsultatsioon + tegevusplaan</td><td class="market-col">150&ndash;400 &euro;</td><td><span class="in-tag">Sees</span></td></tr>
+        <tr class="total-row"><td>Kokku</td><td>2 650&ndash;5 700 &euro;</td><td>349 &euro;</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- VALUE BRIDGE -->
+<div class="value-bridge">
+  <p>Sa ei osta template'i. Sa ostad <strong>ainulaadse tee oma ideest n&auml;htava pakkumiseni.</strong> Enamik j&auml;&auml;b kuudeks m&otilde;tlema. Sina saad &uuml;he p&auml;evaga unikaalse vundamendi, millega p&auml;riselt liikuma hakata.</p>
+</div>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="guarantee-line"></div>
+  <div class="container" style="text-align:center;position:relative;z-index:1">
+    <div class="guarantee-icon">&#128737;&#65039;</div>
+    <h2 class="guarantee-title">Aus kokkulepe</h2>
+    <p class="guarantee-text">Kui me n&auml;eme, et sinu sisendist ei s&uuml;nni usutavat pakkumist, &uuml;tleme selle ausalt v&auml;lja <strong>enne t&ouml;&ouml; algust</strong> ja ei v&otilde;ta sentigi. Kui t&ouml;&ouml; on tehtud ja sa pole rahul, teeme parandused kuni oled. Me ei m&uuml;&uuml; t&uuml;hja.</p>
+    <div class="guarantee-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      Raha tagasi, kui ei alusta
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container">
+    <div class="section-label">&Uuml;ks hind. K&otilde;ik sees.</div>
+    <h2 class="section-title">Stardipakett</h2>
+    <div class="price-big">349 &euro;</div>
+    <p class="price-note">&Uuml;hekordne &middot; 24h &middot; 100% digitaalne</p>
+    <p class="price-limit">V&otilde;tan n&auml;dalas vastu kuni 5 projekti</p>
+    <a href="#kontakt" class="pricing-cta">Paneme k&auml;ima <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <p class="pricing-guarantee">Domeen ei sisaldu &mdash; aitame valida ja &uuml;les seada. <a href="#" style="color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(34,211,238,.3)" onclick="document.querySelector('.guarantee').scrollIntoView({behavior:'smooth'});return false;">Loe meie garantiid &uarr;</a></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="section-label reveal">KKK</div>
+    <h2 class="section-title reveal">Korduma kippuvad k&uuml;simused</h2>
+    <div class="faq-list">
+      <div class="faq-item reveal"><div class="faq-q">Mul pole &auml;riideed. Kas see sobib?</div><div class="faq-a">Just selle jaoks me oleme. Sa ei pea teadma, mida teha. &Uuml;tle, mis sind k&otilde;idab &mdash; meie leiame suuna.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Kas ma pean kellegagi kohtuma v&otilde;i helistama?</div><div class="faq-a">Ei. Kogu protsess on 100% digitaalne. T&auml;idad vormi, saad tulemuse e-postiga. K&uuml;simustele vastame kirjalikult.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Kas 349 &euro; on kogu hind?</div><div class="faq-a">Jah. Ainus, mis ei sisaldu, on domeen (tavaliselt 5&ndash;15 &euro;/aastas) &mdash; aga aitame valida ja &uuml;les seada.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Kas tegu on AI-genereeritud sisuga?</div><div class="faq-a">AI on meie t&ouml;&ouml;riist, mitte asendaja. Iga projekt l&auml;bib inimlikku &uuml;levaatust. Strateegia, positsioneering ja kvaliteedikontroll on alati inimese k&auml;es.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Mis siis, kui tulemus ei meeldi?</div><div class="faq-a">Teeme parandused. Ja kui enne t&ouml;&ouml; algust n&auml;eme, et sinu teemast ei s&uuml;nni usutavat pakkumist, &uuml;tleme selle ausalt v&auml;lja.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Milline veebileht see on? WordPress?</div><div class="faq-a">Iga leht on unikaalne &mdash; disainitud ja kirjutatud ainult sinu &auml;ri jaoks. Puhas HTML, kiire, turvaline, ei vaja hooldust. Mitte WordPress, mitte template, mitte &uuml;hegi teise kliendiga sarnane. Saad hiljem soovi korral mujale &uuml;le viia.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Kas lehed ei n&auml;e k&otilde;ik &uuml;hesugused v&auml;lja?</div><div class="faq-a">Ei. Iga veebileht disainitakse nullist &mdash; sinu valdkonna, tooni ja loo j&auml;rgi. Remondimehe leht n&auml;eb v&auml;lja teisiti kui koolitaja leht. Me ei kasuta valmismalle.</div></div>
+      <div class="faq-item reveal"><div class="faq-q">Kas saan tekste hiljem muuta?</div><div class="faq-a">Jah, k&otilde;ik failid on sinu omad. Saad ise muuta v&otilde;i k&uuml;sida meilt lisateenusena.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="contact-box reveal">
+    <h2>Paneme k&auml;ima</h2>
+    <p>&Uuml;tle, mis sind k&otilde;idab. Vali m&otilde;ni valdkond allpool v&otilde;i kirjuta oma s&otilde;nadega. P&auml;rast vormi t&auml;itmist suuname sind kohe maksele.</p>
+    <div>
+      <div class="form-group"><label for="name">Nimi</label><input type="text" id="name" name="name" required placeholder="Sinu nimi"></div>
+      <div class="form-group"><label for="email">E-post</label><input type="email" id="email" name="email" required placeholder="sinu@email.ee"></div>
+      <div class="form-group"><label for="situation">Mis olukorras sa praegu oled?</label>
+        <select id="situation" name="situation">
+          <option value="">Vali...</option>
+          <option>Mul on idee olemas</option>
+          <option>Mul on oskus, aga puudub veeb</option>
+          <option>Tahan nullist uut algust</option>
+          <option>Tahan olemasoleva asja selgemaks teha</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Vajuta, mis k&otilde;netab &mdash; v&otilde;i kirjuta ise</label>
+        <div class="idea-tags" id="ideaTags">
+          <span class="idea-tag" data-v="loodus ja keskkond">&#127793; Loodus ja keskkond</span>
+          <span class="idea-tag" data-v="turism ja elamused">&#127965; Turism ja elamused</span>
+          <span class="idea-tag" data-v="käsitöö ja disain">&#129526; K&auml;sit&ouml;&ouml; ja disain</span>
+          <span class="idea-tag" data-v="toit ja kokandus">&#127859; Toit ja kokandus</span>
+          <span class="idea-tag" data-v="lapsed ja pered">&#128118; Lapsed ja pered</span>
+          <span class="idea-tag" data-v="tervis ja heaolu">&#129528; Tervis ja heaolu</span>
+          <span class="idea-tag" data-v="sport ja treening">&#127947; Sport ja treening</span>
+          <span class="idea-tag" data-v="koolitus ja mentorlus">&#127891; Koolitus ja mentorlus</span>
+          <span class="idea-tag" data-v="ehitus ja remont">&#128736; Ehitus ja remont</span>
+          <span class="idea-tag" data-v="fotograafia ja video">&#128247; Foto ja video</span>
+          <span class="idea-tag" data-v="ilu ja stiil">&#128132; Ilu ja stiil</span>
+          <span class="idea-tag" data-v="loomad ja lemmikloomad">&#128054; Loomad</span>
+          <span class="idea-tag" data-v="aed ja taimed">&#127806; Aed ja taimed</span>
+          <span class="idea-tag" data-v="muusika ja kunst">&#127912; Muusika ja kunst</span>
+          <span class="idea-tag" data-v="raamatupidamine ja finants">&#128200; Finants</span>
+          <span class="idea-tag" data-v="IT ja tehnika">&#128187; IT ja tehnika</span>
+          <span class="idea-tag" data-v="transport ja logistika">&#128666; Transport</span>
+          <span class="idea-tag" data-v="muu — kirjutan ise">&#10024; Muu</span>
+        </div>
+      </div>
+      <div class="form-group"><label for="idea">Lisa oma m&otilde;tteid</label><textarea id="idea" name="idea" placeholder="Kirjelda vabas vormis, mis sind k&otilde;idab, mis kogemus on, mis unistus... K&otilde;ik sobib."></textarea></div>
+      <button type="button" class="form-submit" id="submitBtn" onclick="handleSubmit()">
+        Stardi mind &mdash; 349 &euro;
+      </button>
+      <p class="form-note">P&auml;rast vormi t&auml;itmist suuname sind turvalisele maksele. T&ouml;&ouml; algab kohe p&auml;rast makset.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-inner">
+    <span>24h stardipakett &mdash; <strong>349 &euro;</strong></span>
+    <a href="#kontakt" class="sticky-btn">Alusta &rarr;</a>
+  </div>
+</div>
+
+<footer>
+  <div style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:.4rem">
+    <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="8" fill="url(#fg)" opacity=".15"/><path d="M10 22L22 10M22 10H14M22 10V18" stroke="url(#fg)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="fg" x1="6" y1="6" x2="26" y2="26"><stop stop-color="#22D3EE"/><stop offset="1" stop-color="#10B981"/></linearGradient></defs></svg>
+    <span class="footer-brand">stardi.me</span>
+  </div>
+  <p>&copy; 2026 KRYONIS Sovereign Systems Limited &middot; hello&#64;stardi.me</p>
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(e=>observer.observe(e));
+const nav=document.getElementById('nav');
+const stickyCta=document.getElementById('stickyCta');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>60);
+  const heroBot=document.querySelector('.hero').getBoundingClientRect().bottom;
+  const kontakt=document.getElementById('kontakt').getBoundingClientRect().top;
+  stickyCta.classList.toggle('visible',heroBot<0&&kontakt>window.innerHeight);
+});
+document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{q.parentElement.classList.toggle('open')})});
+
+// Idea tags
+document.querySelectorAll('.idea-tag').forEach(tag=>{
+  tag.addEventListener('click',()=>{
+    tag.classList.toggle('selected');
+    const sel=document.querySelectorAll('.idea-tag.selected');
+    const vals=[...sel].map(t=>t.dataset.v);
+    const ta=document.getElementById('idea');
+    const existing=ta.value.replace(/^Valdkonnad: .*\n?/,'').trim();
+    ta.value=vals.length?'Valdkonnad: '+vals.join(', ')+(existing?'\n'+existing:''):existing;
+  });
+});
+
+// Form submit → payment
+function handleSubmit(){
+  const name=document.getElementById('name').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const idea=document.getElementById('idea').value.trim();
+  const tags=document.querySelectorAll('.idea-tag.selected');
+  
+  if(!name){alert('Palun sisesta oma nimi');return;}
+  if(!email||!email.includes('@')){alert('Palun sisesta korrektne e-post');return;}
+  if(!idea&&tags.length===0){alert('Palun vali vähemalt üks valdkond või kirjelda, mis sind köidab');return;}
+  
+  const btn=document.getElementById('submitBtn');
+  btn.textContent='Suunan maksele...';
+  btn.style.background='var(--emerald)';
+  btn.disabled=true;
+  
+  // TODO: Replace with your Stripe payment link
+  // Example: https://buy.stripe.com/your_link?prefilled_email=EMAIL&client_reference_id=NAME
+  const paymentUrl='https://buy.stripe.com/YOUR_STRIPE_LINK'
+    +'?prefilled_email='+encodeURIComponent(email)
+    +'&client_reference_id='+encodeURIComponent(name);
+  
+  // Store form data in sessionStorage for webhook pickup
+  try{sessionStorage.setItem('stardi_form',JSON.stringify({name,email,situation:document.getElementById('situation').value,idea:document.getElementById('idea').value}));}catch(e){}
+  
+  setTimeout(()=>{window.location.href=paymentUrl;},600);
+}
+</script>
+</body>
+</html>
