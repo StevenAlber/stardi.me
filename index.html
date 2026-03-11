@@ -498,12 +498,12 @@ function handleSubmit(){
   btn.disabled=true;
   const situation=document.getElementById('situation').value;
   const language=document.getElementById('language').value;
-  const formData={name,email,situation,language,idea:document.getElementById('idea').value,_subject:'Uus taotlus: '+name+' \u2014 stardi.me',_captcha:'false'};
+  const formData={access_key:'908f25a7-022f-4318-9c81-ad416e0d176c',name,email,situation,language,idea:document.getElementById('idea').value,subject:'Uus taotlus: '+name+' \u2014 stardi.me'};
   const paymentUrl='https://buy.stripe.com/8x23cvdS5a5Df1K4xWasg07'
     +'?prefilled_email='+encodeURIComponent(email)
     +'&client_reference_id='+encodeURIComponent(name);
   function goToPay(){btn.textContent='Suunan maksele...';window.location.href=paymentUrl;}
-  fetch('https://formsubmit.co/ajax/stevenalber@icloud.com',{
+  fetch('https://api.web3forms.com/submit',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(formData)
