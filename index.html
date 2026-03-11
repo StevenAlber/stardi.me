@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta property="og:title" content="stardi.me &mdash; Sinu uus sissetulek ei alga CV-st">
+<meta property="og:description" content="24 tunniga saad selge &auml;risuuna, valmis veebilehe, stardidokumendi ja veebimakse lahenduse. 349 &euro;.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stardi.me">
+<meta property="og:site_name" content="stardi.me">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="stardi.me &mdash; Sinu uus sissetulek ei alga CV-st">
+<meta name="twitter:description" content="24 tunniga saad selge &auml;risuuna, valmis veebilehe, stardidokumendi ja veebimakse lahenduse. 349 &euro;.">
 <title>stardi.me &mdash; 24 h stardipakett. Veebileht. &Auml;risuund. Valmis alustamiseks.</title>
 <meta name="description" content="Kirjelda l&uuml;hidalt, mis sind huvitab v&otilde;i milles sul on kogemust. 24 tunniga saad selge &auml;risuuna, veebilehe, stardidokumendi ja veebimakse lahenduse. 349 &euro;.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -460,7 +468,7 @@ footer a{color:var(--cyan);text-decoration:none}
   <div class="contact-box reveal">
     <h2>Soovin alustada</h2>
     <p>Kirjelda l&uuml;hidalt, mis sind huvitab v&otilde;i milles sul on kogemust. Vali sobiv valdkond v&otilde;i kirjuta oma s&otilde;nadega. P&auml;rast vormi t&auml;itmist suuname sind maksele ja t&ouml;&ouml; l&auml;heb kohe k&auml;ima.</p>
-    <div>
+    <form id="startForm" onsubmit="handleSubmit(event)">
       <div class="form-group"><label for="name">Nimi</label><input type="text" id="name" name="name" required autocomplete="name" placeholder="Sinu nimi"></div>
       <div class="form-group"><label for="email">E-post</label><input type="email" id="email" name="email" required autocomplete="email" placeholder="sinu@email.ee"></div>
       <div class="form-group"><label for="situation">Mis olukorras sa praegu oled?</label>
@@ -508,11 +516,11 @@ footer a{color:var(--cyan);text-decoration:none}
         </div>
       </div>
       <div class="form-group"><label for="idea">Lisa oma m&otilde;tteid</label><textarea id="idea" name="idea" placeholder="Kirjelda vabas vormis, mis sind huvitab, mis kogemus on, mis unistus... K&otilde;ik sobib."></textarea></div>
-      <button type="button" class="form-submit" id="submitBtn" onclick="handleSubmit()">
+      <button type="submit" class="form-submit" id="submitBtn">
         Soovin alustada &mdash; 349 &euro;
       </button>
       <p class="form-note">P&auml;rast vormi t&auml;itmist suuname sind turvalisele maksele. P&auml;rast tasumist alustame kohe sinu veebilehe, sisu ja makselahenduse ettevalmistusega.</p>
-    </div>
+    </form>
   </div>
 </section>
 
@@ -555,7 +563,8 @@ document.querySelectorAll('.idea-tag').forEach(tag=>{
   });
 });
 function showErr(id,msg){const f=document.getElementById(id);f.style.borderColor='#EF4444';f.focus();alert(msg);f.addEventListener('input',()=>{f.style.borderColor=''},{ once:true });}
-function handleSubmit(){
+function handleSubmit(e){
+  e.preventDefault();
   const name=document.getElementById('name').value.trim();
   const email=document.getElementById('email').value.trim();
   const idea=document.getElementById('idea').value.trim();
@@ -573,13 +582,14 @@ function handleSubmit(){
   const paymentUrl='https://buy.stripe.com/8x23cvdS5a5Df1K4xWasg07'
     +'?prefilled_email='+encodeURIComponent(email)
     +'&client_reference_id='+encodeURIComponent(name);
-  function goToPay(){btn.textContent='Suunan maksele...';window.location.href=paymentUrl;}
   fetch('https://api.web3forms.com/submit',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify(formData)
-  }).then(r=>r.json()).then(d=>{console.log('Form sent:',d);goToPay();}).catch(()=>{goToPay();});
-  setTimeout(goToPay,5000);
+  }).then(r=>r.json()).then(d=>{
+    if(d.success){btn.textContent='Suunan maksele...';window.location.href=paymentUrl;}
+    else{btn.textContent='Soovin alustada \u2014 349 \u20ac';btn.style.background='';btn.disabled=false;alert('Andmete saatmisel tekkis viga. Palun proovi uuesti.');}
+  }).catch(()=>{btn.textContent='Soovin alustada \u2014 349 \u20ac';btn.style.background='';btn.disabled=false;alert('Andmete saatmisel tekkis viga. Palun proovi uuesti v\u00f5i kirjuta hello@stardi.me');});
 }
 </script>
 </body>
