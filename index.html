@@ -493,18 +493,22 @@ function handleSubmit(){
   if(!email||!email.includes('@')||!email.includes('.')){showErr('email','Palun sisesta korrektne e-post');return;}
   if(!idea&&tags.length===0){alert('Palun vali v\u00e4hemalt \u00fcks valdkond v\u00f5i kirjelda, mis sind huvitab');return;}
   const btn=document.getElementById('submitBtn');
-  btn.textContent='Suunan maksele...';
+  btn.textContent='Saadan andmed...';
   btn.style.background='#10B981';
   btn.disabled=true;
   const situation=document.getElementById('situation').value;
   const language=document.getElementById('language').value;
-  const formData={name,email,situation,language,idea:document.getElementById('idea').value,_subject:'Uus taotlus: '+name+' — stardi.me'};
-  // Pärast kinnitamist asenda see hash'iga: 2282ec7e60cf626d2819c734fa1d9eb9d17b67152a342b9da7e62febbf3cb5cc
-  fetch('https://formsubmit.co/ajax/stevenalber@icloud.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(formData)}).catch(()=>{});
+  const formData={name,email,situation,language,idea:document.getElementById('idea').value,_subject:'Uus taotlus: '+name+' \u2014 stardi.me',_captcha:'false'};
   const paymentUrl='https://buy.stripe.com/8x23cvdS5a5Df1K4xWasg07'
     +'?prefilled_email='+encodeURIComponent(email)
     +'&client_reference_id='+encodeURIComponent(name);
-  setTimeout(()=>{window.location.href=paymentUrl;},800);
+  function goToPay(){btn.textContent='Suunan maksele...';window.location.href=paymentUrl;}
+  fetch('https://formsubmit.co/ajax/stevenalber@icloud.com',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify(formData)
+  }).then(r=>r.json()).then(d=>{console.log('Form sent:',d);goToPay();}).catch(()=>{goToPay();});
+  setTimeout(goToPay,5000);
 }
 </script>
 </body>
