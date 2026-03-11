@@ -496,11 +496,14 @@ function handleSubmit(){
   btn.textContent='Suunan maksele...';
   btn.style.background='#10B981';
   btn.disabled=true;
+  const situation=document.getElementById('situation').value;
+  const language=document.getElementById('language').value;
+  const formData={name,email,situation,language,idea:document.getElementById('idea').value,_subject:'Uus taotlus: '+name+' — stardi.me'};
+  fetch('https://formsubmit.co/ajax/hello@stardi.me',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(formData)}).catch(()=>{});
   const paymentUrl='https://buy.stripe.com/8x23cvdS5a5Df1K4xWasg07'
     +'?prefilled_email='+encodeURIComponent(email)
     +'&client_reference_id='+encodeURIComponent(name);
-  try{sessionStorage.setItem('stardi_form',JSON.stringify({name,email,situation:document.getElementById('situation').value,language:document.getElementById('language').value,idea:document.getElementById('idea').value}));}catch(e){}
-  setTimeout(()=>{window.location.href=paymentUrl;},600);
+  setTimeout(()=>{window.location.href=paymentUrl;},800);
 }
 </script>
 </body>
