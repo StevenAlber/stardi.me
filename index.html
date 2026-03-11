@@ -499,7 +499,8 @@ function handleSubmit(){
   const situation=document.getElementById('situation').value;
   const language=document.getElementById('language').value;
   const formData={name,email,situation,language,idea:document.getElementById('idea').value,_subject:'Uus taotlus: '+name+' — stardi.me'};
-  fetch('https://formsubmit.co/ajax/hello@stardi.me',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(formData)}).catch(()=>{});
+  // Pärast kinnitamist asenda see hash'iga: 2282ec7e60cf626d2819c734fa1d9eb9d17b67152a342b9da7e62febbf3cb5cc
+  fetch('https://formsubmit.co/ajax/stevenalber@icloud.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(formData)}).catch(()=>{});
   const paymentUrl='https://buy.stripe.com/8x23cvdS5a5Df1K4xWasg07'
     +'?prefilled_email='+encodeURIComponent(email)
     +'&client_reference_id='+encodeURIComponent(name);
