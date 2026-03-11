@@ -83,6 +83,13 @@ section{padding:5.5rem 2rem}
 .not-item{display:flex;align-items:flex-start;gap:.8rem;padding:1rem 1.2rem;background:#fff;border-radius:10px;border:1px solid #E2E8F0}
 .not-item .ni{width:24px;height:24px;border-radius:50%;background:rgba(239,68,68,.08);color:#EF4444;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0;margin-top:.1rem}
 .not-item p{font-size:.88rem;color:var(--text-body);line-height:1.5}
+.portfolio{background:var(--midnight);border-bottom:1px solid rgba(34,211,238,.06)}
+.portfolio .section-label{color:var(--cyan)}.portfolio .section-title{color:#fff}.portfolio .section-sub{color:var(--text-muted)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem;margin-top:2rem}
+.pf-card{display:block;padding:1.1rem 1.2rem;background:var(--slate);border:1px solid var(--slate-mid);border-radius:10px;text-decoration:none;transition:all .3s ease}
+.pf-card:hover{border-color:var(--cyan);background:rgba(34,211,238,.06);transform:translateY(-2px)}
+.pf-name{display:block;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.9rem;color:#fff;margin-bottom:.2rem}
+.pf-desc{display:block;font-size:.75rem;color:var(--text-muted);line-height:1.4}
 .comparison{background:#F1F5F9}
 .price-table{width:100%;border-collapse:collapse;margin-top:2rem;border-radius:12px;overflow:hidden;border:1px solid #E2E8F0}
 .price-table thead{background:var(--midnight)}
@@ -158,6 +165,7 @@ footer a{color:var(--cyan);text-decoration:none}
   section{padding:4rem 1.5rem}.profiles{grid-template-columns:1fr}
   .reality-grid{grid-template-columns:1fr}.example-grid{grid-template-columns:1fr}
   .not-grid{grid-template-columns:1fr}.get-items{grid-template-columns:1fr}
+  .portfolio-grid{grid-template-columns:repeat(2,1fr)}
   .contact-box{padding:2rem 1.5rem}.ps{grid-template-columns:56px 1fr}
   .price-table th,.price-table td{padding:.6rem .8rem;font-size:.82rem}
   .hero-proof{gap:1rem}
@@ -315,6 +323,69 @@ footer a{color:var(--cyan);text-decoration:none}
         <div class="ps-marker"><div class="ps-num">3</div><div class="ps-line"></div></div>
         <div class="ps-content"><h3>Saad k&otilde;ik k&auml;tte</h3><p>24 tunni jooksul saad k&auml;tte stardidokumendi, lingi oma veebilehele ja selge suuna, kuidas edasi minna. Vajadusel saad kohe hakata ka makseid vastu v&otilde;tma.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio">
+  <div class="container">
+    <div class="section-label reveal">Meie tehtud t&ouml;&ouml;d</div>
+    <h2 class="section-title reveal">Platvormid, mille oleme ehitanud</h2>
+    <p class="section-sub reveal">Iga projekt on l&auml;htunud ideest ja kasvanud toimivaks platvormiks. Need on p&auml;ris n&auml;ited, mida saad avada ja vaadata.</p>
+    <div class="portfolio-grid">
+      <a href="https://mentalfirstaid.app" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">Mental First Aid</span>
+        <span class="pf-desc">Digitaalne vaimse tervise esmaabi</span>
+      </a>
+      <a href="https://thinqual.com" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">ThinQual</span>
+        <span class="pf-desc">M&otilde;tlemise kvaliteedi platvorm</span>
+      </a>
+      <a href="https://syntroscope.com" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">Syntroscope</span>
+        <span class="pf-desc">S&uuml;nteesip&otilde;hine vaatlus</span>
+      </a>
+      <a href="https://guhyajyoti.org" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">Guhya Jyoti</span>
+        <span class="pf-desc">Vaimse arengu &otilde;petused</span>
+      </a>
+      <a href="https://bioclearing.global" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">BioClearing</span>
+        <span class="pf-desc">Globaalne bio-standardi platvorm</span>
+      </a>
+      <a href="https://cryocapital.exchange" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">CryoCapital</span>
+        <span class="pf-desc">Kr&uuml;okapitali b&ouml;rs</span>
+      </a>
+      <a href="https://lazysusan.pro" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">Lazy Susan PRO</span>
+        <span class="pf-desc">AI-p&otilde;hine strateegiline t&ouml;&ouml;riist</span>
+      </a>
+      <a href="https://16807.app" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">16807</span>
+        <span class="pf-desc">AI kaaslase platvorm</span>
+      </a>
+      <a href="https://noosphere.black" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">Noosphere Black</span>
+        <span class="pf-desc">N&ouml;osf&auml;&auml;ri uuringud</span>
+      </a>
+      <a href="https://thesovereigncharter.org" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">The Sovereign Charter</span>
+        <span class="pf-desc">Tsivilisatsiooni j&auml;tkusuutlikkuse manifest</span>
+      </a>
+      <a href="https://afterai.me" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">After AI</span>
+        <span class="pf-desc">Elu p&auml;rast tehisintellekti</span>
+      </a>
+      <a href="https://premisezero.global" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">Premise Zero</span>
+        <span class="pf-desc">Nullpunkti strateegia</span>
+      </a>
+      <a href="https://sleepawake.me" target="_blank" rel="noopener" class="pf-card reveal">
+        <span class="pf-name">Sleep Awake</span>
+        <span class="pf-desc">Teadliku une platvorm</span>
+      </a>
     </div>
   </div>
 </section>
