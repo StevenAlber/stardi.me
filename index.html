@@ -481,6 +481,7 @@ footer a{color:var(--cyan);text-decoration:none}
     <form id="startForm" onsubmit="handleSubmit(event)">
       <div class="form-group"><label for="name">Nimi</label><input type="text" id="name" name="name" required autocomplete="name" placeholder="Sinu nimi"></div>
       <div class="form-group"><label for="email">E-post</label><input type="email" id="email" name="email" required autocomplete="email" placeholder="sinu@email.ee"></div>
+      <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;overflow:hidden" aria-hidden="true"><label for="company_website">&Auml;ra t&auml;ida seda v&auml;lja</label><input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off"></div>
       <div class="form-group"><label for="situation">Mis olukorras sa praegu oled?</label>
         <select id="situation" name="situation">
           <option value="">Vali...</option>
@@ -573,6 +574,12 @@ document.querySelectorAll('.idea-tag').forEach(tag=>{
   });
 });
 function showErr(id,msg){const f=document.getElementById(id);f.style.borderColor='#EF4444';f.focus();alert(msg);f.addEventListener('input',()=>{f.style.borderColor=''},{ once:true });}
+// ===== stardi.me makse-eelne vormi loogika =====
+// Vormiandmeid EI saadeta enam kohe e-postile. Need saadetakse Cloudflare Workerile,
+// mis loob Stripe makse. Kiri sinuni j&otilde;uab alles p&auml;rast kinnitatud makset (webhook).
+// ASENDA see oma Workeri aadressiga p&auml;rast selle deploy'mist:
+const CHECKOUT_ENDPOINT='https://stardi-checkout.SINU-ALAMDOMEEN.workers.dev/create-checkout';
+const PAGE_LOADED_AT=Date.now();
 function handleSubmit(e){
   e.preventDefault();
   const name=document.getElementById('name').value.trim();
@@ -583,23 +590,28 @@ function handleSubmit(e){
   if(!email||!email.includes('@')||!email.includes('.')){showErr('email','Palun sisesta korrektne e-post');return;}
   if(!idea&&tags.length===0){alert('Palun vali v\u00e4hemalt \u00fcks valdkond v\u00f5i kirjelda, mis sind huvitab');return;}
   const btn=document.getElementById('submitBtn');
-  btn.textContent='Saadan andmed...';
+  btn.textContent='Suunan turvalisele maksele...';
   btn.style.background='#10B981';
   btn.disabled=true;
-  const situation=document.getElementById('situation').value;
-  const language=document.getElementById('language').value;
-  const formData={access_key:'908f25a7-022f-4318-9c81-ad416e0d176c',name,email,situation,language,idea:document.getElementById('idea').value,subject:'Uus taotlus: '+name+' \u2014 stardi.me'};
-  const paymentUrl='https://buy.stripe.com/8x23cvdS5a5Df1K4xWasg07'
-    +'?prefilled_email='+encodeURIComponent(email)
-    +'&client_reference_id='+encodeURIComponent(name);
-  fetch('https://api.web3forms.com/submit',{
+  const payload={
+    name,email,
+    situation:document.getElementById('situation').value,
+    language:document.getElementById('language').value,
+    idea:document.getElementById('idea').value,
+    company_website:document.getElementById('company_website').value, // honeypot
+    elapsed:Date.now()-PAGE_LOADED_AT                                 // aeg lehel (ms)
+  };
+  fetch(CHECKOUT_ENDPOINT,{
     method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify(formData)
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
   }).then(r=>r.json()).then(d=>{
-    if(d.success){btn.textContent='Suunan maksele...';window.location.href=paymentUrl;}
-    else{btn.textContent='Soovin alustada \u2014 349 \u20ac';btn.style.background='';btn.disabled=false;alert('Andmete saatmisel tekkis viga. Palun proovi uuesti.');}
-  }).catch(()=>{btn.textContent='Soovin alustada \u2014 349 \u20ac';btn.style.background='';btn.disabled=false;alert('Andmete saatmisel tekkis viga. Palun proovi uuesti v\u00f5i kirjuta hello@stardi.me');});
+    if(d&&d.url){window.location.href=d.url;} // Stripe Checkout
+    else{throw new Error(d&&d.error||'no_url');}
+  }).catch(()=>{
+    btn.textContent='Soovin alustada \u2014 349 \u20ac';btn.style.background='';btn.disabled=false;
+    alert('Makse alustamisel tekkis viga. Palun proovi uuesti v\u00f5i kirjuta hello@stardi.me');
+  });
 }
 </script>
 </body>
