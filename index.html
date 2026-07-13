@@ -574,14 +574,12 @@ document.querySelectorAll('.idea-tag').forEach(tag=>{
   });
 });
 function showErr(id,msg){const f=document.getElementById(id);f.style.borderColor='#EF4444';f.focus();alert(msg);f.addEventListener('input',()=>{f.style.borderColor=''},{ once:true });}
-// ===== stardi.me makse-eelne vormi loogika =====
-// Vormiandmeid EI saadeta enam kohe e-postile. Need saadetakse Cloudflare Workerile,
-// mis loob Stripe makse. Kiri sinuni j&otilde;uab alles p&auml;rast kinnitatud makset (webhook).
-// ASENDA see oma Workeri aadressiga p&auml;rast selle deploy'mist:
-const CHECKOUT_ENDPOINT='https://stardi-checkout.SINU-ALAMDOMEEN.workers.dev/create-checkout';
 const PAGE_LOADED_AT=Date.now();
 function handleSubmit(e){
   e.preventDefault();
+  // Rämpsukaitse: honeypot täidetud VÕI vorm täidetud alla 2 sek = robot
+  if(document.getElementById('company_website').value){window.location.href='https://buy.stripe.com/8x23cvdS5a5Df1K4xWasg07';return;}
+  if(Date.now()-PAGE_LOADED_AT<2000){alert('Palun t\u00e4ida vorm rahulikult \u2013 proovi uuesti.');return;}
   const name=document.getElementById('name').value.trim();
   const email=document.getElementById('email').value.trim();
   const idea=document.getElementById('idea').value.trim();
@@ -590,28 +588,23 @@ function handleSubmit(e){
   if(!email||!email.includes('@')||!email.includes('.')){showErr('email','Palun sisesta korrektne e-post');return;}
   if(!idea&&tags.length===0){alert('Palun vali v\u00e4hemalt \u00fcks valdkond v\u00f5i kirjelda, mis sind huvitab');return;}
   const btn=document.getElementById('submitBtn');
-  btn.textContent='Suunan turvalisele maksele...';
+  btn.textContent='Saadan andmed...';
   btn.style.background='#10B981';
   btn.disabled=true;
-  const payload={
-    name,email,
-    situation:document.getElementById('situation').value,
-    language:document.getElementById('language').value,
-    idea:document.getElementById('idea').value,
-    company_website:document.getElementById('company_website').value, // honeypot
-    elapsed:Date.now()-PAGE_LOADED_AT                                 // aeg lehel (ms)
-  };
-  fetch(CHECKOUT_ENDPOINT,{
+  const situation=document.getElementById('situation').value;
+  const language=document.getElementById('language').value;
+  const formData={access_key:'908f25a7-022f-4318-9c81-ad416e0d176c',name,email,situation,language,idea:document.getElementById('idea').value,subject:'Uus taotlus: '+name+' \u2014 stardi.me'};
+  const paymentUrl='https://buy.stripe.com/8x23cvdS5a5Df1K4xWasg07'
+    +'?prefilled_email='+encodeURIComponent(email)
+    +'&client_reference_id='+encodeURIComponent(name);
+  fetch('https://api.web3forms.com/submit',{
     method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(payload)
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify(formData)
   }).then(r=>r.json()).then(d=>{
-    if(d&&d.url){window.location.href=d.url;} // Stripe Checkout
-    else{throw new Error(d&&d.error||'no_url');}
-  }).catch(()=>{
-    btn.textContent='Soovin alustada \u2014 349 \u20ac';btn.style.background='';btn.disabled=false;
-    alert('Makse alustamisel tekkis viga. Palun proovi uuesti v\u00f5i kirjuta hello@stardi.me');
-  });
+    if(d.success){btn.textContent='Suunan maksele...';window.location.href=paymentUrl;}
+    else{btn.textContent='Soovin alustada \u2014 349 \u20ac';btn.style.background='';btn.disabled=false;alert('Andmete saatmisel tekkis viga. Palun proovi uuesti.');}
+  }).catch(()=>{btn.textContent='Soovin alustada \u2014 349 \u20ac';btn.style.background='';btn.disabled=false;alert('Andmete saatmisel tekkis viga. Palun proovi uuesti v\u00f5i kirjuta hello@stardi.me');});
 }
 </script>
 </body>
